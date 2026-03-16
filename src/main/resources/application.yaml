@@ -1,20 +1,25 @@
 spring:
   application:
-    name: Seleto AI – API
+    name: seleto-ai-api
 
   datasource:
     url: jdbc:postgresql://localhost:5432/seleto_ai
     username: seleto
     password: seleto
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: validate
     open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
 
   flyway:
     enabled: true
+    locations: classpath:db/migration
     baseline-on-migrate: true
 
 server:
-  port: 8080
+  port: 8081
