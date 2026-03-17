@@ -1,4 +1,7 @@
 package com.seletoai.dto.auth;
 
-public class AuthResponseDTO {
-}
+public record AuthResponseDTO(
+
+  String token
+
+) {}

@@ -1,4 +1,4 @@
-package com.seletoai.core.userRole;
+package com.seletoai.core.domain.userRole;
 
 import com.seletoai.core.domain.base.BaseEntity;
 import jakarta.persistence.*;
@@ -12,8 +12,8 @@ import lombok.Setter;
 public class UserRole extends BaseEntity {
 
   @Column(name = "user_id", nullable = false)
-  private Long userId;
+  private Integer userId;
 
   @Column(name = "role_id", nullable = false)
-  private Long roleId;
+  private Integer roleId;
 }

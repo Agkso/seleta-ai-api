@@ -20,7 +20,12 @@ public class RoleRepositoryAdapter implements RoleRepositoryPort {
   }
 
   @Override
-  public List<Role> findAllById(Iterable<Long> ids) {
-    return repository.findAllById(ids);
+  public Optional<Role> findById(Integer integer) {
+    return Optional.empty();
+  }
+
+  @Override
+  public List<Role> findAll() {
+    return repository.findAll();
   }
 }

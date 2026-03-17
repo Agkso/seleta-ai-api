@@ -1,4 +1,4 @@
-package com.seletoai.config;
+package com.seletoai.config.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

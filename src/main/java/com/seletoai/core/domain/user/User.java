@@ -1,27 +1,22 @@
 package com.seletoai.core.domain.user;
 
 import com.seletoai.core.domain.base.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "users")
-@SQLDelete(sql = "UPDATE users SET deleted_at = now() WHERE id=?")
-@Where(clause = "deleted_at IS NULL")
 public class User extends BaseEntity {
 
+  @Column(nullable = false)
   private String name;
 
+  @Column(nullable = false, unique = true)
   private String email;
 
+  @Column(nullable = false)
   private String password;
-
-  private String role;
-
 }

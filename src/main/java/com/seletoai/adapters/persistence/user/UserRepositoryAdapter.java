@@ -1,12 +1,30 @@
 package com.seletoai.adapters.persistence.user;
 
 import com.seletoai.core.domain.user.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.seletoai.core.ports.repository.UserRepositoryPort;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-public interface SpringUserRepository
-  extends SpringUserRepository<User, Long> {
+@Component
+@RequiredArgsConstructor
+public class UserRepositoryAdapter implements UserRepositoryPort {
 
-  Optional<User> findByEmailAndDeletedAtIsNull(String email);
+  private final SpringUserRepository repository;
+
+  @Override
+  public User save(User user) {
+    return repository.save(user);
+  }
+
+  @Override
+  public Optional<User> findByEmailAndDeletedAtIsNull(String email) {
+    return repository.findByEmailAndDeletedAtIsNull(email);
+  }
+
+  @Override
+  public Optional<User> findById(Long id) {
+    return repository.findById(id);
+  }
 }

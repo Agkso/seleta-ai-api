@@ -1,4 +1,4 @@
-package com.seletoai.core.useCase;
+package com.seletoai.core.useCase.user;
 
 import com.seletoai.config.jwt.JwtService;
 import com.seletoai.core.ports.repository.UserRepositoryPort;

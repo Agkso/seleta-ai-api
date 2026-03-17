@@ -1,4 +1,4 @@
-package com.seletoai.seleto_ai_api;
+package com.seletoai;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

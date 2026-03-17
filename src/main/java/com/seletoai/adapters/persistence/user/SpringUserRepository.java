@@ -1,4 +1,4 @@
-package com.seletoai.adapters.persistence;
+package com.seletoai.adapters.persistence.user;
 
 import com.seletoai.core.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

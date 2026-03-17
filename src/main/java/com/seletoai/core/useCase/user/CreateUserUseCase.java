@@ -1,4 +1,4 @@
-package com.seletoai.core.useCase;
+package com.seletoai.core.useCase.user;
 
 import com.seletoai.core.domain.user.User;
 import com.seletoai.core.domain.userRole.UserRole;

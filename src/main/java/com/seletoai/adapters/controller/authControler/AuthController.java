@@ -1,7 +1,7 @@
-package com.seletoai.adapters.controller;
+package com.seletoai.adapters.controller.authControler;
 
-import com.seletoai.core.useCase.CreateUserUseCase;
-import com.seletoai.core.useCase.LoginUseCase;
+import com.seletoai.core.useCase.user.CreateUserUseCase;
+import com.seletoai.core.useCase.user.LoginUseCase;
 import com.seletoai.dto.auth.AuthResponseDTO;
 import com.seletoai.dto.login.LoginRequestDTO;
 import com.seletoai.dto.register.RegisterRequestDTO;

@@ -1,7 +1,6 @@
-package com.seletoai.adapters.controller;
+package com.seletoai.adapters.controller.userController;
 
-import com.seletoai.core.domain.user.User;
-import com.seletoai.core.useCase.CreateUserUseCase;
+import com.seletoai.core.useCase.user.CreateUserUseCase;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,4 +1,4 @@
-package com.seletoai.seleto_ai_api;
+package com.seletoai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
