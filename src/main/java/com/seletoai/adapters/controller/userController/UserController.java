@@ -14,9 +14,4 @@ public class UserController {
     this.createUserUseCase = createUserUseCase;
   }
 
-  @PostMapping
-  public User create(@RequestBody User user) {
-    return createUserUseCase.execute(user);
-  }
-
 }
