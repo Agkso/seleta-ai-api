@@ -1,7 +1,6 @@
 package com.seletoai.dto.auth;
 
 public record AuthResponseDTO(
-
-  String token
-
+  String token,
+  String refreshToken
 ) {}

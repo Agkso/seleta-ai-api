@@ -1,7 +1,7 @@
 package com.seletoai.adapters.persistence.userRole;
 
 import com.seletoai.core.domain.userRole.UserRole;
-import com.seletoai.core.ports.repository.UserRoleRepositoryPort;
+import com.seletoai.core.ports.repository.userRole.UserRoleRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

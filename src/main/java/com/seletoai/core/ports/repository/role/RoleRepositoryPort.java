@@ -1,4 +1,4 @@
-package com.seletoai.core.ports.repository;
+package com.seletoai.core.ports.repository.role;
 
 import com.seletoai.core.domain.role.Role;
 

@@ -1,4 +1,4 @@
-package com.seletoai.core.ports.repository;
+package com.seletoai.core.ports.repository.contact;
 
 import com.seletoai.core.domain.contact.Contact;
 

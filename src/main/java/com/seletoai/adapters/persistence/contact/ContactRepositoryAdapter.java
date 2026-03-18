@@ -1,7 +1,7 @@
 package com.seletoai.adapters.persistence.contact;
 
 import com.seletoai.core.domain.contact.Contact;
-import com.seletoai.core.ports.repository.ContactRepositoryPort;
+import com.seletoai.core.ports.repository.contact.ContactRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

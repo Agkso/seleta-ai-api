@@ -1,4 +1,4 @@
-package com.seletoai.core.ports.repository;
+package com.seletoai.core.ports.repository.userRole;
 
 import com.seletoai.core.domain.userRole.UserRole;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.seletoai.core.ports.repository;
+package com.seletoai.core.ports.repository.user;
 
 import com.seletoai.core.domain.user.User;
 

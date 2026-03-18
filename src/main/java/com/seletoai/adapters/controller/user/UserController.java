@@ -1,4 +1,4 @@
-package com.seletoai.adapters.controller.userController;
+package com.seletoai.adapters.controller.user;
 
 import com.seletoai.core.useCase.user.CreateUserUseCase;
 import org.springframework.web.bind.annotation.*;
