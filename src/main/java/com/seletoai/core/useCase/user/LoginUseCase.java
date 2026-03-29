@@ -2,8 +2,8 @@ package com.seletoai.core.useCase.user;
 
 import com.seletoai.config.jwt.JwtService;
 import com.seletoai.core.domain.auth.RefreshToken;
-import com.seletoai.core.ports.repository.auth.RefreshTokenRepositoryPort;
-import com.seletoai.core.ports.repository.user.UserRepositoryPort;
+import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
+import com.seletoai.core.ports.out.user.UserRepositoryPort;
 import com.seletoai.dto.auth.AuthResponseDTO;
 import com.seletoai.dto.login.LoginRequestDTO;
 import lombok.RequiredArgsConstructor;

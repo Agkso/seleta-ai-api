@@ -1,7 +1,7 @@
 package com.seletoai.adapters.persistence.user;
 
 import com.seletoai.core.domain.user.User;
-import com.seletoai.core.ports.repository.user.UserRepositoryPort;
+import com.seletoai.core.ports.out.user.UserRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

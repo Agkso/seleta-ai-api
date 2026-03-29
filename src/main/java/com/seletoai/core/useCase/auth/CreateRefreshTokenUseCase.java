@@ -1,7 +1,7 @@
 package com.seletoai.core.useCase.auth;
 
 import com.seletoai.core.domain.auth.RefreshToken;
-import com.seletoai.core.ports.repository.auth.RefreshTokenRepositoryPort;
+import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
