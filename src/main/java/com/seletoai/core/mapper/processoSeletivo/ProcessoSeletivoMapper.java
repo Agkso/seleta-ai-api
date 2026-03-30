@@ -1,0 +1,28 @@
+package com.seletoai.core.mapper.processoSeletivo;
+
+import com.seletoai.core.domain.instituicao.Instituicao;
+import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
+import com.seletoai.dto.processoSeletivo.ProcessoSeletivoRecord;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ProcessoSeletivoMapper {
+
+  public ProcessoSeletivo toEntity(ProcessoSeletivoRecord.ProcessoSeletivoRequest dto) {
+    ProcessoSeletivo processo = new ProcessoSeletivo();
+
+    Instituicao instituicao = new Instituicao();
+    instituicao.setId(dto.instituicaoId());
+    processo.setInstituicao(instituicao);
+
+    processo.setTitulo(dto.titulo());
+    processo.setNumeroEdital(dto.numeroEdital());
+    processo.setDataInicioInscricao(dto.dataInicioInscricao());
+    processo.setDataFimInscricao(dto.dataFimInscricao());
+
+    // Regra de negócio: todo edital nasce como rascunho
+    processo.setStatus("RASCUNHO");
+
+    return processo;
+  }
+}
