@@ -14,7 +14,7 @@ public class AlertRepositoryAdapter implements AlertRepositoryPort {
   private final SpringAlertRepository repository;
 
   @Override
-  public List<Alert> findByProcessIdAndResolvedIsFalse(Integer processId) {
+  public List<Alert> findByProcessIdAndResolvedIsFalse(Long processId) {
     return repository.findByProcessIdAndResolvedIsFalse(processId);
   }
 }

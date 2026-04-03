@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class AnalyticsSnapshot extends BaseEntity {
 
   @Column(name = "process_id", nullable = false)
-  private Integer processId;
+  private Long processId;
 
   private LocalDate date;
 

@@ -14,7 +14,7 @@ public class InsightRepositoryAdapter implements InsightRepositoryPort {
   private final SpringInsightRepository repository;
 
   @Override
-  public List<Insight> findByProcessId(Integer processId) {
+  public List<Insight> findByProcessId(Long processId) {
     return repository.findByProcessId(processId);
   }
 }

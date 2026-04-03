@@ -8,7 +8,7 @@ public interface CandidateRepositoryPort {
 
   Candidate save(Candidate candidate);
 
-  List<Candidate> findByProcessoId(Integer processoId);
+  List<Candidate> findByProcessoId(Long processoId);
 
-  Candidate findById(Integer id);
+  Candidate findById(Long id);
 }

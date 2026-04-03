@@ -10,7 +10,7 @@ public final class ProcessoSeletivoDTO {
 
   @Builder
   public record ProcessoSeletivoRequest(
-    Integer instituicaoId,
+    Long instituicaoId,
     String titulo,
     String numeroEdital,
     LocalDateTime dataInicioInscricao,

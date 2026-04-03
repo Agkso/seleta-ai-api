@@ -4,5 +4,5 @@ import com.seletoai.dto.analytics.AnalyticsDTO;
 
 public interface GetDashboardAnalyticsUseCasePort {
 
-  AnalyticsDTO.DashboardAnalyticsResponse execute(Integer processId);
+  AnalyticsDTO.DashboardAnalyticsResponse execute(Long processId);
 }

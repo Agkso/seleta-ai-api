@@ -21,12 +21,12 @@ public class ProcessoSeletivoRepositoryAdapter implements ProcessoSeletivoReposi
   }
 
   @Override
-  public Optional<ProcessoSeletivo> findById(Integer id) {
-    return repository.findById(Long.valueOf(id));
+  public Optional<ProcessoSeletivo> findById(Long id) {
+    return repository.findById(id);
   }
 
   @Override
-  public List<ProcessoSeletivo> findAllByInstituicaoId(Integer instituicaoId) {
+  public List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId) {
     return repository.findAllByInstituicaoId(instituicaoId);
   }
 

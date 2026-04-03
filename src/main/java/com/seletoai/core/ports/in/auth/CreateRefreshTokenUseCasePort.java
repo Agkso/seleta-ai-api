@@ -4,5 +4,5 @@ import com.seletoai.core.domain.auth.RefreshToken;
 
 public interface CreateRefreshTokenUseCasePort {
 
-  RefreshToken execute(Integer userId);
+  RefreshToken execute(Long userId);
 }

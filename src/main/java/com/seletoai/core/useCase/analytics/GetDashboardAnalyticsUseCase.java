@@ -24,7 +24,7 @@ public class GetDashboardAnalyticsUseCase implements GetDashboardAnalyticsUseCas
   private final AnalyticsMapper mapper;
 
   @Override
-  public AnalyticsDTO.DashboardAnalyticsResponse execute(Integer processId) {
+  public AnalyticsDTO.DashboardAnalyticsResponse execute(Long processId) {
     List<AnalyticsSnapshot> snapshots = snapshotRepository.findByProcessIdOrderByDateAsc(processId);
     List<Insight> insights = insightRepository.findByProcessId(processId);
     List<Alert> alerts = alertRepository.findByProcessIdAndResolvedIsFalse(processId);

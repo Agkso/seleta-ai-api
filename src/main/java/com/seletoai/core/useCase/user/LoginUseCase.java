@@ -9,6 +9,7 @@ import com.seletoai.dto.auth.AuthDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,6 +23,7 @@ public class LoginUseCase implements LoginUseCasePort {
   private final JwtService jwtService;
   private final RefreshTokenRepositoryPort refreshTokenRepository;
 
+  @Transactional
   public AuthDTO.AuthResponse execute(AuthDTO.LoginRequest request) {
     var user = repository
       .findByEmailAndDeletedAtIsNull(request.email())

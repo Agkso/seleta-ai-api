@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AlertRepositoryPort {
 
-  List<Alert> findByProcessIdAndResolvedIsFalse(Integer processId);
+  List<Alert> findByProcessIdAndResolvedIsFalse(Long processId);
 }

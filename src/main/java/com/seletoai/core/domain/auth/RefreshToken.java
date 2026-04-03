@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class RefreshToken extends BaseEntity {
 
   @Column(nullable = false)
-  private Integer userId;
+  private Long userId;
 
   @Column(unique = true, nullable = false)
   private String token;

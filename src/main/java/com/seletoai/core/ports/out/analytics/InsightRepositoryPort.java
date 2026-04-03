@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface InsightRepositoryPort {
 
-  List<Insight> findByProcessId(Integer processId);
+  List<Insight> findByProcessId(Long processId);
 }

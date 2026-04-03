@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS contacts (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
 
     phone VARCHAR(20),
     whatsapp VARCHAR(20),
@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS contacts (
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
 
-    CONSTRAINT fk_contact_user FOREIGN KEY (user_id) REFERENCES users(id)
+    CONSTRAINT fk_contact_user FOREIGN KEY (user_id) REFERENCES users (id)
 );

@@ -11,7 +11,7 @@ import lombok.*;
 public class Insight extends BaseEntity {
 
   @Column(name = "process_id", nullable = false)
-  private Integer processId;
+  private Long processId;
 
   private String type;
   private String title;

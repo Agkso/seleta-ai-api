@@ -16,5 +16,5 @@ public class Contact extends BaseEntity {
   private String email;
 
   @Column(name = "user_id", nullable = false)
-  private Integer userId;
+  private Long userId;
 }

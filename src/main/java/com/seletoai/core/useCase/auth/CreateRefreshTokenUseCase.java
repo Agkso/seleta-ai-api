@@ -15,7 +15,7 @@ public class CreateRefreshTokenUseCase implements CreateRefreshTokenUseCasePort 
 
   private final RefreshTokenRepositoryPort repository;
 
-  public RefreshToken execute(Integer userId) {
+  public RefreshToken execute(Long userId) {
 
     repository.deleteByUserId(userId);
 

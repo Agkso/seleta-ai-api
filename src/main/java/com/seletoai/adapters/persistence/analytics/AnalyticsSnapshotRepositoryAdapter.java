@@ -14,7 +14,7 @@ public class AnalyticsSnapshotRepositoryAdapter implements AnalyticsSnapshotRepo
   private final SpringAnalyticsSnapshotRepository repository;
 
   @Override
-  public List<AnalyticsSnapshot> findByProcessIdOrderByDateAsc(Integer processId) {
+  public List<AnalyticsSnapshot> findByProcessIdOrderByDateAsc(Long processId) {
     return repository.findByProcessIdOrderByDateAsc(processId);
   }
 }

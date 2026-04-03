@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AnalyticsSnapshotRepositoryPort {
 
-  List<AnalyticsSnapshot> findByProcessIdOrderByDateAsc(Integer processId);
+  List<AnalyticsSnapshot> findByProcessIdOrderByDateAsc(Long processId);
 }

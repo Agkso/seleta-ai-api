@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS analytics_snapshots (
-    id SERIAL PRIMARY KEY,
-    process_id INTEGER NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    process_id BIGINT NOT NULL,
     date DATE NOT NULL,
     total_inscricoes INTEGER,
     total_aprovados INTEGER,
@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS analytics_snapshots (
 CREATE INDEX IF NOT EXISTS idx_analytics_snapshots_process_id ON analytics_snapshots (process_id);
 
 CREATE TABLE IF NOT EXISTS insights (
-    id SERIAL PRIMARY KEY,
-    process_id INTEGER NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    process_id BIGINT NOT NULL,
     type VARCHAR(255),
     title VARCHAR(255),
     description TEXT,
@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS insights (
 CREATE INDEX IF NOT EXISTS idx_insights_process_id ON insights (process_id);
 
 CREATE TABLE IF NOT EXISTS alerts (
-    id SERIAL PRIMARY KEY,
-    process_id INTEGER NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    process_id BIGINT NOT NULL,
     type VARCHAR(255),
     message VARCHAR(2000),
     resolved BOOLEAN NOT NULL DEFAULT FALSE,

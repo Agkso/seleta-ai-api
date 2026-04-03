@@ -18,7 +18,7 @@ public class AnalyticsController {
 
   @GetMapping("/dashboard")
   public ResponseEntity<AnalyticsDTO.DashboardAnalyticsResponse> dashboard(
-    @PathVariable Integer processId
+    @PathVariable Long processId
   ) {
     return ResponseEntity.ok(getDashboardAnalyticsUseCase.execute(processId));
   }

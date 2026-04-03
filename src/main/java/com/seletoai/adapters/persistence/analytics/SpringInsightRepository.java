@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface SpringInsightRepository extends BaseRepository<Insight> {
 
-  List<Insight> findByProcessId(Integer processId);
+  List<Insight> findByProcessId(Long processId);
 }

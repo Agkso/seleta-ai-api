@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface SpringAlertRepository extends BaseRepository<Alert> {
 
-  List<Alert> findByProcessIdAndResolvedIsFalse(Integer processId);
+  List<Alert> findByProcessIdAndResolvedIsFalse(Long processId);
 }

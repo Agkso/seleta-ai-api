@@ -10,7 +10,7 @@ public interface RefreshTokenRepositoryPort {
 
   Optional<RefreshToken> findByToken(String token);
 
-  void revokeAllByUserId(Integer userId);
+  void revokeAllByUserId(Long userId);
 
-  void deleteByUserId(Integer userId);
+  void deleteByUserId(Long userId);
 }

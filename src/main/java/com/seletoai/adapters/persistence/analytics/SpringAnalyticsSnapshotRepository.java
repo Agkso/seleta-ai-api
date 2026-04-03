@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface SpringAnalyticsSnapshotRepository extends BaseRepository<AnalyticsSnapshot> {
 
-  List<AnalyticsSnapshot> findByProcessIdOrderByDateAsc(Integer processId);
+  List<AnalyticsSnapshot> findByProcessIdOrderByDateAsc(Long processId);
 }

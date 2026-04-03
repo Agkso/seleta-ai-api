@@ -19,7 +19,7 @@ public final class AuthDTO {
     String name,
     String email,
     String password,
-    Integer roleId
+    Long roleId
   ) {}
 
   @Builder
@@ -30,7 +30,7 @@ public final class AuthDTO {
 
   @Builder
   public record RefreshTokenRequest(
-    Integer userId,
+    Long userId,
     String token,
     LocalDateTime expiresAt,
     boolean revoked
@@ -38,8 +38,8 @@ public final class AuthDTO {
 
   @Builder
   public record RefreshTokenResponse(
-    Integer id,
-    Integer userId,
+    Long id,
+    Long userId,
     String token,
     LocalDateTime expiresAt,
     boolean revoked

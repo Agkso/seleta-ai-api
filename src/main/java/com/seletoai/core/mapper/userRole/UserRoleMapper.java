@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserRoleMapper {
 
-  public UserRole toEntity(Integer userId, Integer roleId) {
+  public UserRole toEntity(Long userId, Long roleId) {
     UserRole userRole = new UserRole();
     userRole.setUserId(userId);
     userRole.setRoleId(roleId);
