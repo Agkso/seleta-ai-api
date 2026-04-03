@@ -2,10 +2,10 @@ package com.seletoai.core.useCase.user;
 
 import com.seletoai.config.jwt.JwtService;
 import com.seletoai.core.domain.auth.RefreshToken;
+import com.seletoai.core.ports.in.user.LoginUseCasePort;
 import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
 import com.seletoai.core.ports.out.user.UserRepositoryPort;
-import com.seletoai.dto.auth.AuthResponseDTO;
-import com.seletoai.dto.login.LoginRequestDTO;
+import com.seletoai.dto.auth.AuthDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,14 +15,14 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class LoginUseCase {
+public class LoginUseCase implements LoginUseCasePort {
 
   private final UserRepositoryPort repository;
   private final PasswordEncoder encoder;
   private final JwtService jwtService;
   private final RefreshTokenRepositoryPort refreshTokenRepository;
 
-  public AuthResponseDTO execute(LoginRequestDTO request) {
+  public AuthDTO.AuthResponse execute(AuthDTO.LoginRequest request) {
     var user = repository
       .findByEmailAndDeletedAtIsNull(request.email())
       .orElseThrow(() -> new RuntimeException("User not found or inactive"));
@@ -43,6 +43,6 @@ public class LoginUseCase {
     refreshToken.setRevoked(false);
     refreshTokenRepository.save(refreshToken);
 
-    return new AuthResponseDTO(accessToken, refreshTokenValue);
+    return new AuthDTO.AuthResponse(accessToken, refreshTokenValue);
   }
 }

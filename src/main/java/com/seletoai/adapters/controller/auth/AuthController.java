@@ -1,11 +1,9 @@
 package com.seletoai.adapters.controller.auth;
 
-import com.seletoai.core.useCase.auth.RefreshTokenUseCase;
-import com.seletoai.core.useCase.user.CreateUserUseCase;
-import com.seletoai.core.useCase.user.LoginUseCase;
-import com.seletoai.dto.auth.AuthResponseDTO;
-import com.seletoai.dto.login.LoginRequestDTO;
-import com.seletoai.dto.register.RegisterRequestDTO;
+import com.seletoai.core.ports.in.auth.RefreshTokenUseCasePort;
+import com.seletoai.core.ports.in.user.CreateUserUseCasePort;
+import com.seletoai.core.ports.in.user.LoginUseCasePort;
+import com.seletoai.dto.auth.AuthDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,17 +15,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthController {
 
-  private final LoginUseCase loginUseCase;
-  private final RefreshTokenUseCase refreshTokenUseCase;
-  private final CreateUserUseCase createUserUseCase;
+  private final LoginUseCasePort loginUseCase;
+  private final RefreshTokenUseCasePort refreshTokenUseCase;
+  private final CreateUserUseCasePort createUserUseCase;
 
   @PostMapping("/login")
-  public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO dto) {
+  public ResponseEntity<AuthDTO.AuthResponse> login(@RequestBody AuthDTO.LoginRequest dto) {
     return ResponseEntity.ok(loginUseCase.execute(dto));
   }
 
   @PostMapping("/register")
-  public ResponseEntity<AuthResponseDTO> register(@RequestBody RegisterRequestDTO dto) {
+  public ResponseEntity<AuthDTO.AuthResponse> register(@RequestBody AuthDTO.RegisterRequest dto) {
     return ResponseEntity.ok(createUserUseCase.execute(dto));
   }
 

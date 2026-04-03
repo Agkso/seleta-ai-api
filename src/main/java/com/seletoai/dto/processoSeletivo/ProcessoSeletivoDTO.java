@@ -1,9 +1,14 @@
 package com.seletoai.dto.processoSeletivo;
 
-  import java.time.LocalDateTime;
-public class ProcessoSeletivoRecord {
+import lombok.Builder;
 
+import java.time.LocalDateTime;
 
+public final class ProcessoSeletivoDTO {
+
+  private ProcessoSeletivoDTO() {}
+
+  @Builder
   public record ProcessoSeletivoRequest(
     Integer instituicaoId,
     String titulo,

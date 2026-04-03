@@ -2,13 +2,13 @@ package com.seletoai.core.mapper.processoSeletivo;
 
 import com.seletoai.core.domain.instituicao.Instituicao;
 import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
-import com.seletoai.dto.processoSeletivo.ProcessoSeletivoRecord;
+import com.seletoai.dto.processoSeletivo.ProcessoSeletivoDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProcessoSeletivoMapper {
 
-  public ProcessoSeletivo toEntity(ProcessoSeletivoRecord.ProcessoSeletivoRequest dto) {
+  public ProcessoSeletivo toEntity(ProcessoSeletivoDTO.ProcessoSeletivoRequest dto) {
     ProcessoSeletivo processo = new ProcessoSeletivo();
 
     Instituicao instituicao = new Instituicao();
