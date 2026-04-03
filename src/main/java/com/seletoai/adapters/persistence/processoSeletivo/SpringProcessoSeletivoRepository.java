@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SpringProcessoSeletivoRepository extends BaseRepository<ProcessoSeletivo> {
 
-  List<ProcessoSeletivo> findAllByInstituicaoId(Integer instituicaoId);
+  List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId);
 
   List<ProcessoSeletivo> findAllByStatus(String status);
 }

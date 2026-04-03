@@ -24,7 +24,7 @@ public class UserRoleRepositoryAdapter implements UserRoleRepositoryPort {
   }
 
   @Override
-  public List<UserRole> findByRoleId(Integer roleId){
+  public List<UserRole> findByRoleId(Long roleId) {
     return repository.findByRoleId(roleId);
   }
 }

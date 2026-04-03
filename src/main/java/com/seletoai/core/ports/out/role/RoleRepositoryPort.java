@@ -9,7 +9,7 @@ public interface RoleRepositoryPort {
 
   Optional<Role> findByName(String name);
 
-  Optional<Role> findById(Integer integer);
+  Optional<Role> findById(Long id);
 
   List<Role> findAll();
 }

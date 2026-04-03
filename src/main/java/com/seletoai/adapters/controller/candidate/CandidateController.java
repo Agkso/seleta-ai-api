@@ -1,7 +1,7 @@
 package com.seletoai.adapters.controller.candidate;
 
 import com.seletoai.core.domain.candidate.Candidate;
-import com.seletoai.core.useCase.candidate.CreateCandidateUseCase;
+import com.seletoai.core.ports.in.candidate.CreateCandidateUseCasePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CandidateController {
 
-  private final CreateCandidateUseCase useCase;
+  private final CreateCandidateUseCasePort useCase;
 
   @PostMapping
   public Candidate create(@RequestBody Candidate candidate) {

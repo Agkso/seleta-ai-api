@@ -20,13 +20,13 @@ public class CandidateRepositoryAdapter
   }
 
   @Override
-  public List<Candidate> findByProcessoId(Integer processoId) {
+  public List<Candidate> findByProcessoId(Long processoId) {
     return repository.findByProcessoId(processoId);
   }
 
   @Override
-  public Candidate findById(Integer id) {
-    return repository.findById(Long.valueOf(id))
+  public Candidate findById(Long id) {
+    return repository.findById(id)
       .orElseThrow(() -> new RuntimeException("Candidato não encontrado"));
   }
 }

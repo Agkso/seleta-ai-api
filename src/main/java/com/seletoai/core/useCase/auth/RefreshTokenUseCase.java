@@ -2,13 +2,14 @@ package com.seletoai.core.useCase.auth;
 
 import com.seletoai.config.jwt.JwtService;
 import com.seletoai.core.domain.auth.RefreshToken;
+import com.seletoai.core.ports.in.auth.RefreshTokenUseCasePort;
 import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class RefreshTokenUseCase {
+public class RefreshTokenUseCase implements RefreshTokenUseCasePort {
 
   private final RefreshTokenRepositoryPort repository;
   private final JwtService jwtService;

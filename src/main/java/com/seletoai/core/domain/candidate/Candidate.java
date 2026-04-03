@@ -24,8 +24,8 @@ public class Candidate extends BaseEntity {
   private Status status;
 
   @Column(name = "processo_id")
-  private Integer processoId;
+  private Long processoId;
 
   @Column(name = "cargo_id")
-  private Integer cargoId;
+  private Long cargoId;
 }

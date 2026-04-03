@@ -6,12 +6,12 @@ import com.seletoai.core.domain.user.User;
 import com.seletoai.core.domain.userRole.UserRole;
 import com.seletoai.core.mapper.user.UserMapper;
 import com.seletoai.core.mapper.userRole.UserRoleMapper;
+import com.seletoai.core.ports.in.user.CreateUserUseCasePort;
 import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
 import com.seletoai.core.ports.out.role.RoleRepositoryPort;
 import com.seletoai.core.ports.out.user.UserRepositoryPort;
 import com.seletoai.core.ports.out.userRole.UserRoleRepositoryPort;
-import com.seletoai.dto.auth.AuthResponseDTO;
-import com.seletoai.dto.register.RegisterRequestDTO;
+import com.seletoai.dto.auth.AuthDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class CreateUserUseCase {
+public class CreateUserUseCase implements CreateUserUseCasePort {
 
   private final UserRepositoryPort userRepository;
   private final RoleRepositoryPort roleRepository;
@@ -32,7 +32,7 @@ public class CreateUserUseCase {
   private final RefreshTokenRepositoryPort refreshTokenRepository;
 
   @Transactional
-  public AuthResponseDTO execute(RegisterRequestDTO dto) {
+  public AuthDTO.AuthResponse execute(AuthDTO.RegisterRequest dto) {
 
     var role = roleRepository.findById(dto.roleId())
       .orElseThrow(() -> new RuntimeException("Role ID não encontrado."));
@@ -53,6 +53,6 @@ public class CreateUserUseCase {
     refreshToken.setRevoked(false);
     refreshTokenRepository.save(refreshToken);
 
-    return new AuthResponseDTO(accessToken, refreshTokenValue);
+    return new AuthDTO.AuthResponse(accessToken, refreshTokenValue);
   }
 }

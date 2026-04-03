@@ -1,6 +1,0 @@
-package com.seletoai.dto.login;
-
-public record LoginRequestDTO(
-  String email,
-  String password
-) {}

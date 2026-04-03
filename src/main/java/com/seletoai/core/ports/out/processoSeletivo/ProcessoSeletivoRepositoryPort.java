@@ -9,9 +9,9 @@ public interface ProcessoSeletivoRepositoryPort {
 
   ProcessoSeletivo save(ProcessoSeletivo processoSeletivo);
 
-  Optional<ProcessoSeletivo> findById(Integer id);
+  Optional<ProcessoSeletivo> findById(Long id);
 
-  List<ProcessoSeletivo> findAllByInstituicaoId(Integer instituicaoId);
+  List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId);
 
   List<ProcessoSeletivo> findAllByStatus(String status);
 }

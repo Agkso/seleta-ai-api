@@ -24,12 +24,12 @@ public class RefreshTokenRepositoryAdapter implements RefreshTokenRepositoryPort
   }
 
   @Override
-  public void revokeAllByUserId(Integer userId) {
-
+  public void revokeAllByUserId(Long userId) {
+    repository.revokeAllByUserId(userId);
   }
 
   @Override
-  public void deleteByUserId(Integer userId) {
+  public void deleteByUserId(Long userId) {
     repository.deleteByUserId(userId);
   }
 }

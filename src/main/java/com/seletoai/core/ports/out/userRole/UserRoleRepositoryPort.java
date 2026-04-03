@@ -9,5 +9,5 @@ public interface UserRoleRepositoryPort {
 
   List<UserRole> findByUserId(Long userId);
 
-  List<UserRole> findByRoleId(Integer roleId);
+  List<UserRole> findByRoleId(Long roleId);
 }

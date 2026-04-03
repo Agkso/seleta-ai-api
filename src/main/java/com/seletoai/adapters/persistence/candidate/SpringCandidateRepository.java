@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface SpringCandidateRepository
   extends BaseRepository<Candidate> {
 
-  List<Candidate> findByProcessoId(Integer processoId);
+  List<Candidate> findByProcessoId(Long processoId);
 }

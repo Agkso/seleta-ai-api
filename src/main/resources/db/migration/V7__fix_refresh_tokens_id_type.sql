@@ -1,10 +1,5 @@
-ALTER TABLE refresh_tokens ALTER COLUMN id TYPE INTEGER;
+-- Histórico: migração legada que convertia tipos para INTEGER.
+-- Baseline atual: todas as PKs e FKs usam BIGINT (BIGSERIAL) de forma consistente nas migrations anteriores.
+-- Mantido como no-op para preservar a ordem de versões do Flyway.
 
-ALTER TABLE refresh_tokens ALTER COLUMN user_id TYPE INTEGER;
-
-ALTER TABLE contacts ALTER COLUMN user_id TYPE INTEGER;
-
-ALTER TABLE user_roles ALTER COLUMN user_id TYPE INTEGER;
-
-ALTER TABLE user_roles ALTER COLUMN role_id TYPE INTEGER;
-
+SELECT 1;

@@ -1,8 +1,8 @@
 package com.seletoai.adapters.controller.processoSeletivo;
 
 import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
-import com.seletoai.core.useCase.processoSeletivo.ProcessoSeletivoUseCase;
-import com.seletoai.dto.processoSeletivo.ProcessoSeletivoRecord;
+import com.seletoai.core.ports.in.processoSeletivo.ProcessoSeletivoUseCasePort;
+import com.seletoai.dto.processoSeletivo.ProcessoSeletivoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProcessoSeletivoController {
 
-  private final ProcessoSeletivoUseCase processoSeletivoUseCase;
+  private final ProcessoSeletivoUseCasePort processoSeletivoUseCase;
 
   @PostMapping
-  public ResponseEntity<ProcessoSeletivo> criarProcesso(@RequestBody ProcessoSeletivoRecord.ProcessoSeletivoRequest request) {
+  public ResponseEntity<ProcessoSeletivo> criarProcesso(@RequestBody ProcessoSeletivoDTO.ProcessoSeletivoRequest request) {
     ProcessoSeletivo novoProcesso = processoSeletivoUseCase.criar(request);
     return ResponseEntity.status(HttpStatus.CREATED).body(novoProcesso);
   }

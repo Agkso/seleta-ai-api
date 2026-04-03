@@ -1,6 +1,7 @@
 package com.seletoai.core.useCase.auth;
 
 import com.seletoai.core.domain.auth.RefreshToken;
+import com.seletoai.core.ports.in.auth.CreateRefreshTokenUseCasePort;
 import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,11 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class CreateRefreshTokenUseCase {
+public class CreateRefreshTokenUseCase implements CreateRefreshTokenUseCasePort {
 
   private final RefreshTokenRepositoryPort repository;
 
-  public RefreshToken execute(Integer userId) {
+  public RefreshToken execute(Long userId) {
 
     repository.deleteByUserId(userId);
 
