@@ -31,7 +31,7 @@ public class ProcessoSeletivoRepositoryAdapter implements ProcessoSeletivoReposi
   }
 
   @Override
-  public List<ProcessoSeletivo> findAllByStatus(String status) {
-    return repository.findAllByStatus(status);
+  public List<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo) {
+    return repository.findAllByStatus_Codigo(statusCodigo);
   }
 }

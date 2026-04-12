@@ -1,5 +1,6 @@
 package com.seletoai.dto.processoSeletivo;
 
+import com.seletoai.core.domain.processoSeletivo.TipoProcesso;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,12 @@ public final class ProcessoSeletivoDTO {
     String titulo,
     String numeroEdital,
     LocalDateTime dataInicioInscricao,
-    LocalDateTime dataFimInscricao
+    LocalDateTime dataFimInscricao,
+    TipoProcesso tipoProcesso
+  ) {}
+
+  @Builder
+  public record AdicionarCargoRequest(
+    String titulo
   ) {}
 }

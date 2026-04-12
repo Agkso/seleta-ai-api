@@ -2,6 +2,7 @@ package com.seletoai.core.domain.processoSeletivo;
 
 import com.seletoai.core.domain.base.BaseEntity;
 import com.seletoai.core.domain.instituicao.Instituicao;
+import com.seletoai.core.domain.status.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,11 @@ public class ProcessoSeletivo extends BaseEntity {
   @Column(nullable = false)
   private LocalDateTime dataFimInscricao;
 
-  @Column(nullable = false)
-  private String status = "RASCUNHO";
+  @Enumerated(EnumType.STRING)
+  @Column(name = "tipo_processo", nullable = false, length = 32)
+  private TipoProcesso tipoProcesso = TipoProcesso.PUBLICO;
+
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "status_id", nullable = false)
+  private Status status;
 }

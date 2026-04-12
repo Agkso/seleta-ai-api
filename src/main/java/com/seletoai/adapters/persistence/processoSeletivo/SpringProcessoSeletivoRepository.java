@@ -9,5 +9,5 @@ public interface SpringProcessoSeletivoRepository extends BaseRepository<Process
 
   List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId);
 
-  List<ProcessoSeletivo> findAllByStatus(String status);
+  List<ProcessoSeletivo> findAllByStatus_Codigo(String statusCodigo);
 }

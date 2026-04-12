@@ -2,6 +2,7 @@ package com.seletoai.core.mapper.processoSeletivo;
 
 import com.seletoai.core.domain.instituicao.Instituicao;
 import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
+import com.seletoai.core.domain.processoSeletivo.TipoProcesso;
 import com.seletoai.dto.processoSeletivo.ProcessoSeletivoDTO;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +21,7 @@ public class ProcessoSeletivoMapper {
     processo.setDataInicioInscricao(dto.dataInicioInscricao());
     processo.setDataFimInscricao(dto.dataFimInscricao());
 
-    // Regra de negócio: todo edital nasce como rascunho
-    processo.setStatus("RASCUNHO");
+    processo.setTipoProcesso(dto.tipoProcesso() != null ? dto.tipoProcesso() : TipoProcesso.PUBLICO);
 
     return processo;
   }

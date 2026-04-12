@@ -13,5 +13,5 @@ public interface ProcessoSeletivoRepositoryPort {
 
   List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId);
 
-  List<ProcessoSeletivo> findAllByStatus(String status);
+  List<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo);
 }
