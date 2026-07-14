@@ -1,5 +1,6 @@
 package com.seletoai.core.useCase.processoSeletivo;
 
+import com.seletoai.core.domain.auth.AuthContext;
 import com.seletoai.core.domain.exception.RecursoNaoEncontradoException;
 import com.seletoai.core.domain.exception.RegraNegocioException;
 import com.seletoai.core.domain.processoSeletivo.ProcessoCargo;
@@ -22,12 +23,13 @@ public class AdicionarCargoAoProcessoUseCase implements AdicionarCargoAoProcesso
 
   @Override
   @Transactional
-  public ProcessoCargo execute(Long processoId, ProcessoSeletivoDTO.AdicionarCargoRequest request) {
+  public ProcessoCargo execute(Long processoId, ProcessoSeletivoDTO.AdicionarCargoRequest request, AuthContext authContext) {
     if (request == null || request.titulo() == null || request.titulo().isBlank()) {
       throw new RegraNegocioException("Título do cargo é obrigatório.");
     }
     ProcessoSeletivo processo = processoRepository.findById(processoId)
       .orElseThrow(() -> new RecursoNaoEncontradoException("Processo não encontrado."));
+    authContext.garantirAcessoInstituicao(processo.getInstituicao().getId());
     ProcessoLifecycleRules.garantirPodeAdicionarCargo(processo);
     ProcessoCargo cargo = new ProcessoCargo();
     cargo.setProcesso(processo);

@@ -1,5 +1,7 @@
 package com.seletoai.adapters.controller.processoSeletivo;
 
+import com.seletoai.adapters.security.AuthenticatedUser;
+import com.seletoai.core.domain.auth.AuthContext;
 import com.seletoai.core.domain.processoSeletivo.ProcessoCargo;
 import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
 import com.seletoai.core.ports.in.processoSeletivo.AdicionarCargoAoProcessoUseCasePort;
@@ -12,6 +14,8 @@ import com.seletoai.dto.processoSeletivo.ProcessoSeletivoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +33,12 @@ public class ProcessoSeletivoController {
   private final AdicionarCargoAoProcessoUseCasePort adicionarCargoAoProcessoUseCase;
 
   @PostMapping
-  public ResponseEntity<ProcessoSeletivo> criarProcesso(@RequestBody ProcessoSeletivoDTO.ProcessoSeletivoRequest request) {
-    ProcessoSeletivo novoProcesso = processoSeletivoUseCase.criar(request);
+  @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
+  public ResponseEntity<ProcessoSeletivo> criarProcesso(
+    @RequestBody ProcessoSeletivoDTO.ProcessoSeletivoRequest request,
+    @AuthenticationPrincipal AuthenticatedUser principal
+  ) {
+    ProcessoSeletivo novoProcesso = processoSeletivoUseCase.criar(request, authContext(principal));
     return ResponseEntity.status(HttpStatus.CREATED).body(novoProcesso);
   }
 
@@ -40,30 +48,41 @@ public class ProcessoSeletivoController {
   }
 
   @PostMapping("/{id}/cargos")
+  @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
   public ResponseEntity<ProcessoCargo> adicionarCargo(
     @PathVariable Long id,
-    @RequestBody ProcessoSeletivoDTO.AdicionarCargoRequest request
+    @RequestBody ProcessoSeletivoDTO.AdicionarCargoRequest request,
+    @AuthenticationPrincipal AuthenticatedUser principal
   ) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(adicionarCargoAoProcessoUseCase.execute(id, request));
+    return ResponseEntity.status(HttpStatus.CREATED)
+      .body(adicionarCargoAoProcessoUseCase.execute(id, request, authContext(principal)));
   }
 
   @PostMapping("/{id}/publicar")
-  public ResponseEntity<ProcessoSeletivo> publicar(@PathVariable Long id) {
-    return ResponseEntity.ok(publicarProcessoUseCase.execute(id));
+  @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
+  public ResponseEntity<ProcessoSeletivo> publicar(@PathVariable Long id, @AuthenticationPrincipal AuthenticatedUser principal) {
+    return ResponseEntity.ok(publicarProcessoUseCase.execute(id, authContext(principal)));
   }
 
   @PostMapping("/{id}/iniciar")
-  public ResponseEntity<ProcessoSeletivo> iniciar(@PathVariable Long id) {
-    return ResponseEntity.ok(iniciarProcessoUseCase.execute(id));
+  @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
+  public ResponseEntity<ProcessoSeletivo> iniciar(@PathVariable Long id, @AuthenticationPrincipal AuthenticatedUser principal) {
+    return ResponseEntity.ok(iniciarProcessoUseCase.execute(id, authContext(principal)));
   }
 
   @PostMapping("/{id}/encerrar")
-  public ResponseEntity<ProcessoSeletivo> encerrar(@PathVariable Long id) {
-    return ResponseEntity.ok(encerrarProcessoUseCase.execute(id));
+  @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
+  public ResponseEntity<ProcessoSeletivo> encerrar(@PathVariable Long id, @AuthenticationPrincipal AuthenticatedUser principal) {
+    return ResponseEntity.ok(encerrarProcessoUseCase.execute(id, authContext(principal)));
   }
 
   @PostMapping("/{id}/cancelar")
-  public ResponseEntity<ProcessoSeletivo> cancelar(@PathVariable Long id) {
-    return ResponseEntity.ok(cancelarProcessoUseCase.execute(id));
+  @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
+  public ResponseEntity<ProcessoSeletivo> cancelar(@PathVariable Long id, @AuthenticationPrincipal AuthenticatedUser principal) {
+    return ResponseEntity.ok(cancelarProcessoUseCase.execute(id, authContext(principal)));
+  }
+
+  private AuthContext authContext(AuthenticatedUser principal) {
+    return new AuthContext(principal.getUserId(), principal.getInstituicaoId(), principal.isAdmin());
   }
 }

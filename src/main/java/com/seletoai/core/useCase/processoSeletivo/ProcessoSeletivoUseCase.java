@@ -1,5 +1,6 @@
 package com.seletoai.core.useCase.processoSeletivo;
 
+import com.seletoai.core.domain.auth.AuthContext;
 import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
 import com.seletoai.core.domain.processoSeletivo.ProcessoStatusCodes;
 import com.seletoai.core.mapper.processoSeletivo.ProcessoSeletivoMapper;
@@ -20,7 +21,8 @@ public class ProcessoSeletivoUseCase implements ProcessoSeletivoUseCasePort {
   private final ProcessoSeletivoMapper mapper;
   private final StatusRepositoryPort statusRepositoryPort;
 
-  public ProcessoSeletivo criar(ProcessoSeletivoDTO.ProcessoSeletivoRequest request) {
+  public ProcessoSeletivo criar(ProcessoSeletivoDTO.ProcessoSeletivoRequest request, AuthContext authContext) {
+    authContext.garantirAcessoInstituicao(request.instituicaoId());
     ProcessoSeletivo processo = mapper.toEntity(request);
     processo.setStatus(
       statusRepositoryPort.findByCodigoAndTipo(

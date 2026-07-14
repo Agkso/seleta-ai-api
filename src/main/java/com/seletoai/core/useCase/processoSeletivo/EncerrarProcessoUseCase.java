@@ -1,5 +1,6 @@
 package com.seletoai.core.useCase.processoSeletivo;
 
+import com.seletoai.core.domain.auth.AuthContext;
 import com.seletoai.core.domain.exception.RecursoNaoEncontradoException;
 import com.seletoai.core.domain.processoSeletivo.ProcessoEventos;
 import com.seletoai.core.domain.processoSeletivo.ProcessoLifecycleRules;
@@ -22,9 +23,10 @@ public class EncerrarProcessoUseCase implements EncerrarProcessoUseCasePort {
 
   @Override
   @Transactional
-  public ProcessoSeletivo execute(Long processoId) {
+  public ProcessoSeletivo execute(Long processoId, AuthContext authContext) {
     ProcessoSeletivo processo = processoRepository.findById(processoId)
       .orElseThrow(() -> new RecursoNaoEncontradoException("Processo não encontrado."));
+    authContext.garantirAcessoInstituicao(processo.getInstituicao().getId());
     ProcessoLifecycleRules.garantirPodeEncerrar(processo);
     processo.setStatus(
       statusRepository.findByCodigoAndTipo(ProcessoStatusCodes.ENCERRADO, ProcessoStatusCodes.TIPO_DOMINIO_PROCESSO)

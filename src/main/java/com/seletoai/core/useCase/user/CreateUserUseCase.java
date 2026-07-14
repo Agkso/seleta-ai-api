@@ -2,12 +2,15 @@ package com.seletoai.core.useCase.user;
 
 import com.seletoai.config.jwt.JwtService;
 import com.seletoai.core.domain.auth.RefreshToken;
+import com.seletoai.core.domain.exception.RegraNegocioException;
+import com.seletoai.core.domain.instituicao.Instituicao;
 import com.seletoai.core.domain.user.User;
 import com.seletoai.core.domain.userRole.UserRole;
 import com.seletoai.core.mapper.user.UserMapper;
 import com.seletoai.core.mapper.userRole.UserRoleMapper;
 import com.seletoai.core.ports.in.user.CreateUserUseCasePort;
 import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
+import com.seletoai.core.ports.out.instituicao.InstituicaoRepositoryPort;
 import com.seletoai.core.ports.out.role.RoleRepositoryPort;
 import com.seletoai.core.ports.out.user.UserRepositoryPort;
 import com.seletoai.core.ports.out.userRole.UserRoleRepositoryPort;
@@ -23,9 +26,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CreateUserUseCase implements CreateUserUseCasePort {
 
+  private static final String ROLE_CONTRATANTE = "CONTRATANTE";
+
   private final UserRepositoryPort userRepository;
   private final RoleRepositoryPort roleRepository;
   private final UserRoleRepositoryPort userRoleRepository;
+  private final InstituicaoRepositoryPort instituicaoRepository;
   private final UserMapper userMapper;
   private final UserRoleMapper userRoleMapper;
   private final JwtService jwtService;
@@ -37,7 +43,15 @@ public class CreateUserUseCase implements CreateUserUseCasePort {
     var role = roleRepository.findById(dto.roleId())
       .orElseThrow(() -> new RuntimeException("Role ID não encontrado."));
 
-    User user = userMapper.toEntity(dto);
+    Instituicao instituicao = null;
+    if (dto.instituicaoId() != null) {
+      instituicao = instituicaoRepository.findById(dto.instituicaoId())
+        .orElseThrow(() -> new RegraNegocioException("Instituição não encontrada."));
+    } else if (ROLE_CONTRATANTE.equalsIgnoreCase(role.getName())) {
+      throw new RegraNegocioException("Usuários com papel CONTRATANTE precisam informar a instituição.");
+    }
+
+    User user = userMapper.toEntity(dto, instituicao);
     User savedUser = userRepository.save(user);
 
     UserRole userRole = userRoleMapper.toEntity(savedUser.getId(), role.getId());

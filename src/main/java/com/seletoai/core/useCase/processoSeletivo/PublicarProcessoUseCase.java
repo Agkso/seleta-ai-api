@@ -1,5 +1,6 @@
 package com.seletoai.core.useCase.processoSeletivo;
 
+import com.seletoai.core.domain.auth.AuthContext;
 import com.seletoai.core.domain.exception.RecursoNaoEncontradoException;
 import com.seletoai.core.domain.processoSeletivo.ProcessoEventos;
 import com.seletoai.core.domain.processoSeletivo.ProcessoLifecycleRules;
@@ -24,9 +25,10 @@ public class PublicarProcessoUseCase implements PublicarProcessoUseCasePort {
 
   @Override
   @Transactional
-  public ProcessoSeletivo execute(Long processoId) {
+  public ProcessoSeletivo execute(Long processoId, AuthContext authContext) {
     ProcessoSeletivo processo = processoRepository.findById(processoId)
       .orElseThrow(() -> new RecursoNaoEncontradoException("Processo não encontrado."));
+    authContext.garantirAcessoInstituicao(processo.getInstituicao().getId());
     long cargos = cargoRepository.countByProcessoId(processoId);
     ProcessoLifecycleRules.garantirPodePublicar(processo, cargos);
     processo.setStatus(

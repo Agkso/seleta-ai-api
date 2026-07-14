@@ -19,7 +19,8 @@ public final class AuthDTO {
     String name,
     String email,
     String password,
-    Long roleId
+    Long roleId,
+    Long instituicaoId
   ) {}
 
   @Builder
