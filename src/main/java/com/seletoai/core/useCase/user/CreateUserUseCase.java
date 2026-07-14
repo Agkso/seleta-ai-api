@@ -4,6 +4,7 @@ import com.seletoai.config.jwt.JwtService;
 import com.seletoai.core.domain.auth.RefreshToken;
 import com.seletoai.core.domain.exception.RegraNegocioException;
 import com.seletoai.core.domain.instituicao.Instituicao;
+import com.seletoai.core.domain.role.RoleNomes;
 import com.seletoai.core.domain.user.User;
 import com.seletoai.core.domain.userRole.UserRole;
 import com.seletoai.core.mapper.user.UserMapper;
@@ -26,8 +27,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CreateUserUseCase implements CreateUserUseCasePort {
 
-  private static final String ROLE_CONTRATANTE = "CONTRATANTE";
-
   private final UserRepositoryPort userRepository;
   private final RoleRepositoryPort roleRepository;
   private final UserRoleRepositoryPort userRoleRepository;
@@ -47,7 +46,7 @@ public class CreateUserUseCase implements CreateUserUseCasePort {
     if (dto.instituicaoId() != null) {
       instituicao = instituicaoRepository.findById(dto.instituicaoId())
         .orElseThrow(() -> new RegraNegocioException("Instituição não encontrada."));
-    } else if (ROLE_CONTRATANTE.equalsIgnoreCase(role.getName())) {
+    } else if (RoleNomes.CONTRATANTE.equalsIgnoreCase(role.getName())) {
       throw new RegraNegocioException("Usuários com papel CONTRATANTE precisam informar a instituição.");
     }
 
