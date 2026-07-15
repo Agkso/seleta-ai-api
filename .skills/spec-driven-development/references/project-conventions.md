@@ -1,5 +1,13 @@
 # Project Conventions — seleto-ai-api
 
+## Skill tree layout
+
+- **Project-level:** `.skills/project-context/`, `.skills/spec-driven-development/`
+- **Per module:** `SKILL.md` co-located with the module package (usually `core/domain/<module>/SKILL.md`;
+  onboarding under `core/useCase/onboarding/`; security under `adapters/security/`)
+- New module skill → place `SKILL.md` next to that module’s primary package and link it in
+  `.skills/project-context/SKILL.md` module map
+
 ## Framework & language
 
 - Java 21, Spring Boot 3.3.5, Maven (`./mvnw`)

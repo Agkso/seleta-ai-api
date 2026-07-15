@@ -15,8 +15,8 @@ Plan and implement features with precision, adapted to this project.
 
 ## Before any code
 
-1. **Load context** — read `skills/project-context/SKILL.md` (domain, conventions, module map).
-2. **Read the module** — open the affected `skills/<module>/SKILL.md` (and submodule skill if relevant).
+1. **Load context** — read `.skills/project-context/SKILL.md` (domain, conventions, module map).
+2. **Read the module** — open the co-located `<module-path>/SKILL.md` from the module map (and submodule skill if relevant).
 3. **Conventions** — read `references/project-conventions.md` for this project's stack and patterns.
 
 ## TDD is mandatory — immutable phase-1 tests
@@ -97,8 +97,8 @@ SPECIFY → DESIGN → TASKS → EXECUTE, auto-sized by scope.
 ## Workflow
 
 **`[cast-skills]` Step 0 — load project context (every feature, fix, or quick task):**
-Before Specify (or before Implement in quick mode), read `skills/project-context/SKILL.md` for domain,
-stack, conventions, and the module map; then read the affected `skills/<module>/SKILL.md` for its business
+Before Specify (or before Implement in quick mode), read `.skills/project-context/SKILL.md` for domain,
+stack, conventions, and the module map; then read the affected module's co-located `SKILL.md` for its business
 rules, relationships, and gotchas. This replaces re-deriving the codebase from scratch each session.
 If these skills don't exist yet, run `creating-project-skills` first.
 
@@ -119,14 +119,14 @@ If these skills don't exist yet, run `creating-project-skills` first.
 
 **Base load (~15k tokens):**
 
-- `[cast-skills]` `skills/project-context/SKILL.md` (domain, stack, conventions, module map)
+- `[cast-skills]` `.skills/project-context/SKILL.md` (domain, stack, conventions, module map)
 - PROJECT.md (if exists)
 - ROADMAP.md (when planning/working on features)
 - STATE.md (persistent memory)
 
 **On-demand load:**
 
-- `[cast-skills]` `skills/<affected-module>/SKILL.md` (business rules, relationships, gotchas — load the module you're touching, never all modules at once)
+- `[cast-skills]` co-located `<module-path>/SKILL.md` from the module map (business rules, relationships, gotchas — load the module you're touching, never all modules at once)
 - Codebase docs (when working in existing project)
 - CONCERNS.md (when planning features that touch flagged areas, estimating risk, or modifying fragile components)
 - TESTING.md (when creating tasks or executing — drives test type assignment and gate checks)

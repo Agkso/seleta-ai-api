@@ -1,7 +1,7 @@
 ---
 name: processoSeletivo-lifecycle
 description: Business rules for processo seletivo lifecycle transitions (publish, start, end,
-  cancel, cargos). Load with skills/processoSeletivo/SKILL.md when changing status flows.
+  cancel, cargos). Load with ../SKILL.md (processoSeletivo) when changing status flows.
 ---
 
 # Module: processoSeletivo / lifecycle

@@ -68,20 +68,24 @@ Shared base: `BaseEntity` (`id`, `createdAt`, `updatedAt`, `deletedAt`).
 
 ## Module Map
 
-| Module | Code slice (primary) | Skill |
-|--------|----------------------|-------|
-| auth | `core/useCase/auth`, `config/jwt`, refresh tokens, login | [skills/auth/SKILL.md](../auth/SKILL.md) |
-| user | `core/domain/user`, create user, user↔role | [skills/user/SKILL.md](../user/SKILL.md) |
-| role | roles catalog + `RoleController` | [skills/role/SKILL.md](../role/SKILL.md) |
-| instituicao | CRUD instituição + CNPJ validation | [skills/instituicao/SKILL.md](../instituicao/SKILL.md) |
-| processoSeletivo | processes, cargos, audit, lifecycle | [skills/processoSeletivo/SKILL.md](../processoSeletivo/SKILL.md) |
-| processoSeletivo/lifecycle | publish/start/end/cancel + rules | [skills/processoSeletivo/lifecycle/SKILL.md](../processoSeletivo/lifecycle/SKILL.md) |
-| candidate | inscriptions to process+cargo | [skills/candidate/SKILL.md](../candidate/SKILL.md) |
-| onboarding | institution + CONTRATANTE bootstrap | [skills/onboarding/SKILL.md](../onboarding/SKILL.md) |
-| analytics | dashboard snapshots/insights/alerts | [skills/analytics/SKILL.md](../analytics/SKILL.md) |
-| contact | legacy contacts table (no flows) | [skills/contact/SKILL.md](../contact/SKILL.md) |
-| status | shared status catalog | [skills/status/SKILL.md](../status/SKILL.md) |
-| security | filter chain, rate limit, principals | [skills/security/SKILL.md](../security/SKILL.md) |
+Skills live **inside each module** (co-located with domain/use case code). Project-level workflow lives under `.skills/`.
+
+| Module | Primary path | Skill |
+|--------|--------------|-------|
+| auth | `core/domain/auth` (+ useCase/auth, config/jwt) | [SKILL.md](../../src/main/java/com/seletoai/core/domain/auth/SKILL.md) |
+| user | `core/domain/user` | [SKILL.md](../../src/main/java/com/seletoai/core/domain/user/SKILL.md) |
+| role | `core/domain/role` | [SKILL.md](../../src/main/java/com/seletoai/core/domain/role/SKILL.md) |
+| instituicao | `core/domain/instituicao` | [SKILL.md](../../src/main/java/com/seletoai/core/domain/instituicao/SKILL.md) |
+| processoSeletivo | `core/domain/processoSeletivo` | [SKILL.md](../../src/main/java/com/seletoai/core/domain/processoSeletivo/SKILL.md) |
+| processoSeletivo/lifecycle | lifecycle rules + transition use cases | [SKILL.md](../../src/main/java/com/seletoai/core/domain/processoSeletivo/lifecycle/SKILL.md) |
+| candidate | `core/domain/candidate` | [SKILL.md](../../src/main/java/com/seletoai/core/domain/candidate/SKILL.md) |
+| onboarding | `core/useCase/onboarding` | [SKILL.md](../../src/main/java/com/seletoai/core/useCase/onboarding/SKILL.md) |
+| analytics | `core/domain/analytics` | [SKILL.md](../../src/main/java/com/seletoai/core/domain/analytics/SKILL.md) |
+| contact | `core/domain/contact` (legacy) | [SKILL.md](../../src/main/java/com/seletoai/core/domain/contact/SKILL.md) |
+| status | `core/domain/status` | [SKILL.md](../../src/main/java/com/seletoai/core/domain/status/SKILL.md) |
+| security | `adapters/security` (+ `config/`) | [SKILL.md](../../src/main/java/com/seletoai/adapters/security/SKILL.md) |
+
+**Project skills:** `.skills/project-context/SKILL.md` · `.skills/spec-driven-development/SKILL.md`
 
 ## Cross-Module Communication
 

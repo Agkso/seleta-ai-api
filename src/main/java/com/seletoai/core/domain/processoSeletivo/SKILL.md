@@ -14,7 +14,7 @@ Own the selection process aggregate: create processes for an institution, manage
 draft, run lifecycle transitions, expose public listings, and write audit records.
 
 Also load **lifecycle** skill for transition rules:
-`skills/processoSeletivo/lifecycle/SKILL.md`.
+`src/main/java/com/seletoai/core/domain/processoSeletivo/lifecycle/SKILL.md`.
 
 ## Business Rules
 
