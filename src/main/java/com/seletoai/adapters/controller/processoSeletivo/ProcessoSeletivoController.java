@@ -11,14 +11,16 @@ import com.seletoai.core.ports.in.processoSeletivo.IniciarProcessoUseCasePort;
 import com.seletoai.core.ports.in.processoSeletivo.ProcessoSeletivoUseCasePort;
 import com.seletoai.core.ports.in.processoSeletivo.PublicarProcessoUseCasePort;
 import com.seletoai.dto.processoSeletivo.ProcessoSeletivoDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/processos")
@@ -35,7 +37,7 @@ public class ProcessoSeletivoController {
   @PostMapping
   @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
   public ResponseEntity<ProcessoSeletivo> criarProcesso(
-    @RequestBody ProcessoSeletivoDTO.ProcessoSeletivoRequest request,
+    @RequestBody @Valid ProcessoSeletivoDTO.ProcessoSeletivoRequest request,
     @AuthenticationPrincipal AuthenticatedUser principal
   ) {
     ProcessoSeletivo novoProcesso = processoSeletivoUseCase.criar(request, authContext(principal));
@@ -43,15 +45,17 @@ public class ProcessoSeletivoController {
   }
 
   @GetMapping("/publicos")
-  public ResponseEntity<List<ProcessoSeletivo>> listarProcessosPublicos() {
-    return ResponseEntity.ok(processoSeletivoUseCase.listarPublicos());
+  public ResponseEntity<Page<ProcessoSeletivo>> listarProcessosPublicos(
+    @PageableDefault(size = 20, sort = "id") Pageable pageable
+  ) {
+    return ResponseEntity.ok(processoSeletivoUseCase.listarPublicos(pageable));
   }
 
   @PostMapping("/{id}/cargos")
   @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
   public ResponseEntity<ProcessoCargo> adicionarCargo(
     @PathVariable Long id,
-    @RequestBody ProcessoSeletivoDTO.AdicionarCargoRequest request,
+    @RequestBody @Valid ProcessoSeletivoDTO.AdicionarCargoRequest request,
     @AuthenticationPrincipal AuthenticatedUser principal
   ) {
     return ResponseEntity.status(HttpStatus.CREATED)

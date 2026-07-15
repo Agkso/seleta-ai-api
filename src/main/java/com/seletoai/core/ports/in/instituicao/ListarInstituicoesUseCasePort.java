@@ -1,10 +1,10 @@
 package com.seletoai.core.ports.in.instituicao;
 
 import com.seletoai.core.domain.instituicao.Instituicao;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ListarInstituicoesUseCasePort {
 
-  List<Instituicao> execute();
+  Page<Instituicao> execute(Pageable pageable);
 }

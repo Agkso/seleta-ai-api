@@ -7,13 +7,15 @@ import com.seletoai.core.ports.in.instituicao.CriarInstituicaoUseCasePort;
 import com.seletoai.core.ports.in.instituicao.ExcluirInstituicaoUseCasePort;
 import com.seletoai.core.ports.in.instituicao.ListarInstituicoesUseCasePort;
 import com.seletoai.dto.instituicao.InstituicaoDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/instituicoes")
@@ -28,13 +30,13 @@ public class InstituicaoController {
 
   @PostMapping
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<Instituicao> criar(@RequestBody InstituicaoDTO.InstituicaoRequest request) {
+  public ResponseEntity<Instituicao> criar(@RequestBody @Valid InstituicaoDTO.InstituicaoRequest request) {
     return ResponseEntity.status(HttpStatus.CREATED).body(criarInstituicaoUseCase.execute(request));
   }
 
   @GetMapping
-  public ResponseEntity<List<Instituicao>> listar() {
-    return ResponseEntity.ok(listarInstituicoesUseCase.execute());
+  public ResponseEntity<Page<Instituicao>> listar(@PageableDefault(size = 20, sort = "id") Pageable pageable) {
+    return ResponseEntity.ok(listarInstituicoesUseCase.execute(pageable));
   }
 
   @GetMapping("/{id}")
@@ -46,7 +48,7 @@ public class InstituicaoController {
   @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Instituicao> atualizar(
     @PathVariable Long id,
-    @RequestBody InstituicaoDTO.InstituicaoRequest request
+    @RequestBody @Valid InstituicaoDTO.InstituicaoRequest request
   ) {
     return ResponseEntity.ok(atualizarInstituicaoUseCase.execute(id, request));
   }

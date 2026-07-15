@@ -3,9 +3,10 @@ package com.seletoai.adapters.persistence.instituicao;
 import com.seletoai.core.domain.instituicao.Instituicao;
 import com.seletoai.core.ports.out.instituicao.InstituicaoRepositoryPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -25,8 +26,8 @@ public class InstituicaoRepositoryAdapter implements InstituicaoRepositoryPort {
   }
 
   @Override
-  public List<Instituicao> findAllAtivas() {
-    return repository.findAllByDeletedAtIsNull();
+  public Page<Instituicao> findAllAtivas(Pageable pageable) {
+    return repository.findAllByDeletedAtIsNull(pageable);
   }
 
   @Override

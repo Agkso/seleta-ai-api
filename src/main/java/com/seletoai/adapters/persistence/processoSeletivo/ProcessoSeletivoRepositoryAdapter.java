@@ -4,6 +4,8 @@ import com.seletoai.adapters.persistence.processoSeletivo.SpringProcessoSeletivo
 import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
 import com.seletoai.core.ports.out.processoSeletivo.ProcessoSeletivoRepositoryPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class ProcessoSeletivoRepositoryAdapter implements ProcessoSeletivoReposi
   }
 
   @Override
-  public List<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo) {
-    return repository.findAllByStatus_Codigo(statusCodigo);
+  public Page<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo, Pageable pageable) {
+    return repository.findAllByStatus_Codigo(statusCodigo, pageable);
   }
 }

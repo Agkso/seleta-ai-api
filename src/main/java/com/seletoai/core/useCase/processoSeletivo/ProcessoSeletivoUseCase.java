@@ -9,9 +9,9 @@ import com.seletoai.core.ports.out.processoSeletivo.ProcessoSeletivoRepositoryPo
 import com.seletoai.core.ports.out.status.StatusRepositoryPort;
 import com.seletoai.dto.processoSeletivo.ProcessoSeletivoDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -33,7 +33,7 @@ public class ProcessoSeletivoUseCase implements ProcessoSeletivoUseCasePort {
     return repositoryPort.save(processo);
   }
 
-  public List<ProcessoSeletivo> listarPublicos() {
-    return repositoryPort.findAllByStatusCodigo(ProcessoStatusCodes.PUBLICADO);
+  public Page<ProcessoSeletivo> listarPublicos(Pageable pageable) {
+    return repositoryPort.findAllByStatusCodigo(ProcessoStatusCodes.PUBLICADO, pageable);
   }
 }

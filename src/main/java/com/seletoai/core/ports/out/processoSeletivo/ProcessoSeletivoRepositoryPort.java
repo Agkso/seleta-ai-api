@@ -1,6 +1,8 @@
 package com.seletoai.core.ports.out.processoSeletivo;
 
 import com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,5 +15,5 @@ public interface ProcessoSeletivoRepositoryPort {
 
   List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId);
 
-  List<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo);
+  Page<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo, Pageable pageable);
 }
