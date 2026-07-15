@@ -161,15 +161,29 @@ http://localhost:8081/v3/api-docs
 
 Utiliza PostgreSQL com migrações via Flyway.
 
-### Configuração padrão:
+### Configuração padrão (sobrescrita por variáveis de ambiente):
 
 ```yaml
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/seleto_ai
-    username: seleto
-    password: seleto
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/seleto_ai}
+    username: ${DB_USERNAME:seleto}
+    password: ${DB_PASSWORD:seleto}
 ```
+
+---
+
+## 🔑 Variáveis de Ambiente
+
+| Variável | Obrigatória | Descrição |
+|---|---|---|
+| `JWT_SECRET` | **sim** | Chave usada para assinar os JWT. Sem ela a aplicação **não sobe** (fail-fast). Mínimo de 32 bytes. |
+| `JWT_EXPIRATION_MS` | não | Expiração do access token em ms (padrão 24h). |
+| `DB_URL`, `DB_USERNAME`, `DB_PASSWORD` | não | Sobrescrevem as credenciais padrão de dev (`seleto`/`seleto`). |
+| `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD` | não | SMTP usado para o e-mail de confirmação de cadastro. |
+| `APP_BASE_URL` | não | URL base usada para montar o link de confirmação de e-mail. |
+
+Gere um `JWT_SECRET` local com `openssl rand -base64 48`.
 
 ---
 
@@ -186,13 +200,14 @@ docker-compose up -d
 ### 2. Rodar aplicação
 
 ```bash
+export JWT_SECRET=$(openssl rand -base64 48)
 ./mvnw spring-boot:run
 ```
 
 ou
 
 ```bash
-mvn spring-boot:run
+JWT_SECRET=$(openssl rand -base64 48) mvn spring-boot:run
 ```
 
 ---
