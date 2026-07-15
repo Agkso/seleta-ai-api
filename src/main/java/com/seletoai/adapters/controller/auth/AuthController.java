@@ -4,6 +4,7 @@ import com.seletoai.core.ports.in.auth.RefreshTokenUseCasePort;
 import com.seletoai.core.ports.in.user.CreateUserUseCasePort;
 import com.seletoai.core.ports.in.user.LoginUseCasePort;
 import com.seletoai.dto.auth.AuthDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +21,12 @@ public class AuthController {
   private final CreateUserUseCasePort createUserUseCase;
 
   @PostMapping("/login")
-  public ResponseEntity<AuthDTO.AuthResponse> login(@RequestBody AuthDTO.LoginRequest dto) {
+  public ResponseEntity<AuthDTO.AuthResponse> login(@RequestBody @Valid AuthDTO.LoginRequest dto) {
     return ResponseEntity.ok(loginUseCase.execute(dto));
   }
 
   @PostMapping("/register")
-  public ResponseEntity<AuthDTO.AuthResponse> register(@RequestBody AuthDTO.RegisterRequest dto) {
+  public ResponseEntity<AuthDTO.AuthResponse> register(@RequestBody @Valid AuthDTO.RegisterRequest dto) {
     return ResponseEntity.ok(createUserUseCase.execute(dto));
   }
 

@@ -3,6 +3,7 @@ package com.seletoai.adapters.controller.onboarding;
 import com.seletoai.core.ports.in.onboarding.OnboardingUseCasePort;
 import com.seletoai.dto.auth.AuthDTO;
 import com.seletoai.dto.onboarding.OnboardingDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class OnboardingController {
   private final OnboardingUseCasePort onboardingUseCase;
 
   @PostMapping
-  public ResponseEntity<AuthDTO.AuthResponse> onboard(@RequestBody OnboardingDTO.OnboardingRequest request) {
+  public ResponseEntity<AuthDTO.AuthResponse> onboard(@RequestBody @Valid OnboardingDTO.OnboardingRequest request) {
     return ResponseEntity.status(HttpStatus.CREATED).body(onboardingUseCase.execute(request));
   }
 }

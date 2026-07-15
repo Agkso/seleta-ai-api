@@ -6,6 +6,7 @@ import com.seletoai.core.mapper.instituicao.InstituicaoMapper;
 import com.seletoai.core.ports.in.instituicao.CriarInstituicaoUseCasePort;
 import com.seletoai.core.ports.out.instituicao.InstituicaoRepositoryPort;
 import com.seletoai.dto.instituicao.InstituicaoDTO;
+import com.seletoai.dto.validation.CnpjNormalizador;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class CriarInstituicaoUseCase implements CriarInstituicaoUseCasePort {
     if (request == null || request.cnpj() == null || request.cnpj().isBlank()) {
       throw new RegraNegocioException("CNPJ é obrigatório.");
     }
-    if (repository.findByCnpjAtiva(request.cnpj()).isPresent()) {
+    if (repository.findByCnpjAtiva(CnpjNormalizador.normalizar(request.cnpj())).isPresent()) {
       throw new RegraNegocioException("Já existe uma instituição cadastrada com este CNPJ.");
     }
     return repository.save(mapper.toEntity(request));
