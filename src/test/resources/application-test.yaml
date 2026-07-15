@@ -1,0 +1,2 @@
+jwt:
+  secret: unit-test-jwt-secret-not-for-production-0123456789
