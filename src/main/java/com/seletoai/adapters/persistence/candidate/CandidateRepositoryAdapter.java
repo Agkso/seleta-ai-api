@@ -1,6 +1,7 @@
 package com.seletoai.adapters.persistence.candidate;
 
 import com.seletoai.core.domain.candidate.Candidate;
+import com.seletoai.core.domain.exception.RecursoNaoEncontradoException;
 import com.seletoai.core.ports.out.candidate.CandidateRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,6 @@ public class CandidateRepositoryAdapter
   @Override
   public Candidate findById(Long id) {
     return repository.findById(id)
-      .orElseThrow(() -> new RuntimeException("Candidato não encontrado"));
+      .orElseThrow(() -> new RecursoNaoEncontradoException("Candidato não encontrado"));
   }
 }

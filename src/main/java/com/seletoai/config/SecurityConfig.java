@@ -1,6 +1,9 @@
 package com.seletoai.config;
 
+import com.seletoai.adapters.security.RestAccessDeniedHandler;
+import com.seletoai.adapters.security.RestAuthEntryPoint;
 import com.seletoai.config.jwt.JwtFilter;
+import com.seletoai.config.ratelimit.RateLimitFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,9 +27,20 @@ import java.util.List;
 public class SecurityConfig {
 
   private final JwtFilter jwtFilter;
+  private final RateLimitFilter rateLimitFilter;
+  private final RestAuthEntryPoint restAuthEntryPoint;
+  private final RestAccessDeniedHandler restAccessDeniedHandler;
 
-  public SecurityConfig(JwtFilter jwtFilter) {
+  public SecurityConfig(
+    JwtFilter jwtFilter,
+    RateLimitFilter rateLimitFilter,
+    RestAuthEntryPoint restAuthEntryPoint,
+    RestAccessDeniedHandler restAccessDeniedHandler
+  ) {
     this.jwtFilter = jwtFilter;
+    this.rateLimitFilter = rateLimitFilter;
+    this.restAuthEntryPoint = restAuthEntryPoint;
+    this.restAccessDeniedHandler = restAccessDeniedHandler;
   }
 
   @Bean
@@ -66,6 +80,11 @@ public class SecurityConfig {
 
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
+      .exceptionHandling(ex -> ex
+        .authenticationEntryPoint(restAuthEntryPoint)
+        .accessDeniedHandler(restAccessDeniedHandler)
+      )
+
       .authorizeHttpRequests(auth -> auth
         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
@@ -80,7 +99,8 @@ public class SecurityConfig {
 
         .anyRequest().authenticated()
       )
-      .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+      .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+      .addFilterBefore(rateLimitFilter, JwtFilter.class);
 
     return http.build();
   }

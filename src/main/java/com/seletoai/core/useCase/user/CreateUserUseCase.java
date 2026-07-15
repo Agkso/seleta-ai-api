@@ -40,7 +40,7 @@ public class CreateUserUseCase implements CreateUserUseCasePort {
   public AuthDTO.AuthResponse execute(AuthDTO.RegisterRequest dto) {
 
     var role = roleRepository.findById(dto.roleId())
-      .orElseThrow(() -> new RuntimeException("Role ID não encontrado."));
+      .orElseThrow(() -> new RegraNegocioException("Role ID não encontrado."));
 
     Instituicao instituicao = null;
     if (dto.instituicaoId() != null) {

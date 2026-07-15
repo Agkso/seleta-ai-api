@@ -2,6 +2,7 @@ package com.seletoai.core.useCase.user;
 
 import com.seletoai.config.jwt.JwtService;
 import com.seletoai.core.domain.auth.RefreshToken;
+import com.seletoai.core.domain.exception.CredenciaisInvalidasException;
 import com.seletoai.core.ports.in.user.LoginUseCasePort;
 import com.seletoai.core.ports.out.auth.RefreshTokenRepositoryPort;
 import com.seletoai.core.ports.out.user.UserRepositoryPort;
@@ -27,10 +28,10 @@ public class LoginUseCase implements LoginUseCasePort {
   public AuthDTO.AuthResponse execute(AuthDTO.LoginRequest request) {
     var user = repository
       .findByEmailAndDeletedAtIsNull(request.email())
-      .orElseThrow(() -> new RuntimeException("User not found or inactive"));
+      .orElseThrow(() -> new CredenciaisInvalidasException("Email ou senha inválidos."));
 
     if (!encoder.matches(request.password(), user.getPassword())) {
-      throw new RuntimeException("Invalid credentials");
+      throw new CredenciaisInvalidasException("Email ou senha inválidos.");
     }
 
     String accessToken = jwtService.generateToken(user.getEmail());
