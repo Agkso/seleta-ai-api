@@ -11,5 +11,7 @@ public interface SpringProcessoSeletivoRepository extends BaseRepository<Process
 
   List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId);
 
+  Page<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId, Pageable pageable);
+
   Page<ProcessoSeletivo> findAllByStatus_Codigo(String statusCodigo, Pageable pageable);
 }

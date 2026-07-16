@@ -48,6 +48,20 @@ public final class AuthDTO {
   ) {}
 
   @Builder
+  public record CandidatoRegisterRequest(
+    @NotBlank(message = "Nome é obrigatório.")
+    String name,
+
+    @NotBlank(message = "Email é obrigatório.")
+    @Email(message = "Email inválido.")
+    String email,
+
+    @NotBlank(message = "Senha é obrigatória.")
+    @Size(min = 6, max = 100, message = "Senha deve ter entre 6 e 100 caracteres.")
+    String password
+  ) {}
+
+  @Builder
   public record RefreshTokenRequest(
     Long userId,
     String token,

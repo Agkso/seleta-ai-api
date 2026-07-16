@@ -4,6 +4,7 @@ import com.seletoai.core.ports.in.analytics.GetDashboardAnalyticsUseCasePort;
 import com.seletoai.dto.analytics.AnalyticsDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class AnalyticsController {
   private final GetDashboardAnalyticsUseCasePort getDashboardAnalyticsUseCase;
 
   @GetMapping("/dashboard")
+  @PreAuthorize("hasAnyRole('ADMIN', 'CONTRATANTE')")
   public ResponseEntity<AnalyticsDTO.DashboardAnalyticsResponse> dashboard(
     @PathVariable Long processId
   ) {

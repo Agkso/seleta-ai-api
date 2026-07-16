@@ -10,4 +10,8 @@ public interface SpringCandidateRepository
   extends BaseRepository<Candidate> {
 
   List<Candidate> findByProcessoId(Long processoId);
+
+  org.springframework.data.domain.Page<Candidate> findByProcessoId(Long processoId, org.springframework.data.domain.Pageable pageable);
+
+  boolean existsByUserIdAndProcessoId(Long userId, Long processoId);
 }

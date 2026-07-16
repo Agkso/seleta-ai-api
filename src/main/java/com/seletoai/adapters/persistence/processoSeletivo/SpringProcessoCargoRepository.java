@@ -8,4 +8,6 @@ public interface SpringProcessoCargoRepository extends BaseRepository<ProcessoCa
   long countByProcesso_Id(Long processoId);
 
   boolean existsByIdAndProcesso_Id(Long cargoId, Long processoId);
+
+  java.util.List<ProcessoCargo> findByProcesso_Id(Long processoId);
 }

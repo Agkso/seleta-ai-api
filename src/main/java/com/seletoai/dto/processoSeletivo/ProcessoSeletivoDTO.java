@@ -34,6 +34,48 @@ public final class ProcessoSeletivoDTO {
   @Builder
   public record AdicionarCargoRequest(
     @NotBlank(message = "Título do cargo é obrigatório.")
-    String titulo
+    String titulo,
+
+    @NotNull(message = "Número de vagas é obrigatório.")
+    @jakarta.validation.constraints.Min(value = 1, message = "Mínimo de 1 vaga.")
+    Integer vagas
   ) {}
+
+  public record ProcessoSeletivoResponse(
+    Long id,
+    String titulo,
+    String numeroEdital,
+    java.time.LocalDateTime dataInicioInscricao,
+    java.time.LocalDateTime dataFimInscricao,
+    com.seletoai.core.domain.processoSeletivo.TipoProcesso tipoProcesso,
+    String statusCodigo,
+    String statusNome,
+    Long instituicaoId,
+    String instituicaoNome
+  ) {
+    public static ProcessoSeletivoResponse from(com.seletoai.core.domain.processoSeletivo.ProcessoSeletivo p) {
+      return new ProcessoSeletivoResponse(
+        p.getId(),
+        p.getTitulo(),
+        p.getNumeroEdital(),
+        p.getDataInicioInscricao(),
+        p.getDataFimInscricao(),
+        p.getTipoProcesso(),
+        p.getStatus() != null ? p.getStatus().getCodigo() : null,
+        p.getStatus() != null ? p.getStatus().getNome() : null,
+        p.getInstituicao() != null ? p.getInstituicao().getId() : null,
+        p.getInstituicao() != null ? p.getInstituicao().getRazaoSocial() : null
+      );
+    }
+  }
+
+  public record CargoResponse(
+    Long id,
+    String titulo,
+    int vagas
+  ) {
+    public static CargoResponse from(com.seletoai.core.domain.processoSeletivo.ProcessoCargo c) {
+      return new CargoResponse(c.getId(), c.getTitulo(), c.getVagas());
+    }
+  }
 }

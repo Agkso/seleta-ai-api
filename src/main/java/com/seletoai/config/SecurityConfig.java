@@ -97,6 +97,12 @@ public class SecurityConfig {
           "/swagger-ui.html"
         ).permitAll()
 
+        .requestMatchers(org.springframework.http.HttpMethod.GET,
+          "/api/processos/publicos",
+          "/api/processos/{id}",
+          "/api/processos/{id}/cargos"
+        ).permitAll()
+
         .anyRequest().authenticated()
       )
       .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

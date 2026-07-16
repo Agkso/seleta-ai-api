@@ -1,0 +1,8 @@
+INSERT INTO roles (name)
+SELECT 'CANDIDATO'
+WHERE NOT EXISTS (SELECT 1 FROM roles WHERE name = 'CANDIDATO');
+
+ALTER TABLE processo_cargos ADD COLUMN IF NOT EXISTS vagas INTEGER NOT NULL DEFAULT 0;
+
+ALTER TABLE candidatos ADD COLUMN IF NOT EXISTS user_id BIGINT REFERENCES users(id);
+ALTER TABLE candidatos ADD CONSTRAINT uq_candidato_user_processo UNIQUE (user_id, processo_id);

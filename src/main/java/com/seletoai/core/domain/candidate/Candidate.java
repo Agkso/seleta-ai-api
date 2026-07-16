@@ -28,4 +28,7 @@ public class Candidate extends BaseEntity {
 
   @Column(name = "cargo_id")
   private Long cargoId;
+
+  @Column(name = "user_id")
+  private Long userId;
 }

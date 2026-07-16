@@ -8,4 +8,5 @@ public final class RoleNomes {
   public static final String CONTRATANTE = "CONTRATANTE";
   public static final String PRESTADOR = "PRESTADOR";
   public static final String SUPORTE = "SUPORTE";
+  public static final String CANDIDATO = "CANDIDATO";
 }

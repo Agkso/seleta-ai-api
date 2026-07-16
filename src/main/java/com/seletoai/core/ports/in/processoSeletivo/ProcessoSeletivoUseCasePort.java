@@ -11,4 +11,12 @@ public interface ProcessoSeletivoUseCasePort {
   ProcessoSeletivo criar(ProcessoSeletivoDTO.ProcessoSeletivoRequest request, AuthContext authContext);
 
   Page<ProcessoSeletivo> listarPublicos(Pageable pageable);
+
+  ProcessoSeletivoDTO.ProcessoSeletivoResponse buscar(Long id);
+
+  org.springframework.data.domain.Page<ProcessoSeletivoDTO.ProcessoSeletivoResponse> listar(Pageable pageable, AuthContext authContext);
+
+  ProcessoSeletivo atualizar(Long id, ProcessoSeletivoDTO.ProcessoSeletivoRequest request, AuthContext authContext);
+
+  void excluir(Long id, AuthContext authContext);
 }

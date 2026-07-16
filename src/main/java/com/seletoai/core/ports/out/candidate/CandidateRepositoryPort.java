@@ -10,5 +10,9 @@ public interface CandidateRepositoryPort {
 
   List<Candidate> findByProcessoId(Long processoId);
 
+  org.springframework.data.domain.Page<Candidate> findByProcessoId(Long processoId, org.springframework.data.domain.Pageable pageable);
+
   Candidate findById(Long id);
+
+  boolean existsByUserIdAndProcessoId(Long userId, Long processoId);
 }

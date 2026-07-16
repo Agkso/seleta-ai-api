@@ -9,4 +9,8 @@ public interface ProcessoCargoRepositoryPort {
   long countByProcessoId(Long processoId);
 
   boolean existsByIdAndProcesso_Id(Long cargoId, Long processoId);
+
+  java.util.List<ProcessoCargo> findByProcessoId(Long processoId);
+
+  void deleteById(Long id);
 }

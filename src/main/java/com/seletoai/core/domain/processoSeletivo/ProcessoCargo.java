@@ -17,4 +17,7 @@ public class ProcessoCargo extends BaseEntity {
 
   @Column(nullable = false)
   private String titulo;
+
+  @Column(nullable = false)
+  private int vagas;
 }

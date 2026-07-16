@@ -36,4 +36,14 @@ public class ProcessoSeletivoRepositoryAdapter implements ProcessoSeletivoReposi
   public Page<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo, Pageable pageable) {
     return repository.findAllByStatus_Codigo(statusCodigo, pageable);
   }
+
+  @Override
+  public Page<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId, Pageable pageable) {
+    return repository.findAllByInstituicaoId(instituicaoId, pageable);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    repository.deleteById(id);
+  }
 }

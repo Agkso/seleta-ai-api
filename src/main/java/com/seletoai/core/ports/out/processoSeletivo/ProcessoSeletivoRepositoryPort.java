@@ -16,4 +16,8 @@ public interface ProcessoSeletivoRepositoryPort {
   List<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId);
 
   Page<ProcessoSeletivo> findAllByStatusCodigo(String statusCodigo, Pageable pageable);
+
+  Page<ProcessoSeletivo> findAllByInstituicaoId(Long instituicaoId, Pageable pageable);
+
+  void deleteById(Long id);
 }

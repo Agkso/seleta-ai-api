@@ -25,4 +25,14 @@ public class ProcessoCargoRepositoryAdapter implements ProcessoCargoRepositoryPo
   public boolean existsByIdAndProcesso_Id(Long cargoId, Long processoId) {
     return repository.existsByIdAndProcesso_Id(cargoId, processoId);
   }
+
+  @Override
+  public java.util.List<com.seletoai.core.domain.processoSeletivo.ProcessoCargo> findByProcessoId(Long processoId) {
+    return repository.findByProcesso_Id(processoId);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    repository.deleteById(id);
+  }
 }
